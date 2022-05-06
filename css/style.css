@@ -1,0 +1,497 @@
+/* VARIABLES */
+
+:root {
+  /* COLORS */
+  --color-light:        hsl(0, 0%, 100%);
+  --color-light-grey:   hsl(0, 0%, 90%);
+  --color-grey:         hsl(0, 0%, 50%);
+  --color-dark-grey:    hsl(0, 0%, 12%);
+  --color-dark:         hsl(0, 0%, 0%);
+  --color-shadow:       hsla(0, 0%, 0%, 0.5);
+  --color-transparent:  hsla(0, 0%, 0%, 0);
+
+
+  /* FONTS */
+  --font-primary:    'Exo', sans-serif;
+  --font-secondary:  'Open Sans', sans-serif;
+}
+
+
+
+
+
+/* GENERAL */
+*, *::before, *::after {
+  margin:       0;
+  padding:      0;
+  box-sizing:   border-box;
+  color:        var(--color-dark);
+  font-size:    100%;
+  font-family:  var(--font-secondary);
+}
+html, body {
+  max-width:   100%;
+  overflow-x:  hidden;
+  cursor:      url("/img/cursor_32.cur"), auto;
+}
+
+
+
+
+
+/* HEADER */
+.header {
+  display:        grid;
+  grid-template-areas:
+    "header-logo   header-logo   menu-btn"
+    "navigation    navigation    navigation";
+  position:       fixed;
+  top:            0;
+  z-index:        900;
+  height:         82px;
+  width:          100%;
+  background:     var(--color-transparent);
+  transition:     all 0.5s ease;
+}
+.header-active {
+  background:     var(--color-light);
+}
+.header-logo {
+  grid-area:    header-logo;
+  position:     relative;
+  top:          60vh;
+  left:         10vw;
+  margin:       17px 24px;
+  font-family:  var(--font-primary);
+  font-weight:  bold;
+  font-size:    20vw;
+  color:        var(--color-transparent);
+  transition:   all 0.5s ease;
+}
+.header-active .header-logo {
+  top:        0;
+  left:       0;
+  font-size:  2rem;
+}
+.fit-header {
+  background:     var(--color-dark-grey);
+}
+.fit-header .header-logo {
+  top:        0;
+  left:       0;
+  font-size:  2rem;
+  color:      var(--color-light)!important;
+}
+.menu-btn {
+  grid-area:   menu-btn;
+	position:    absolute;
+	right:       0;
+  width:       82px;
+  height:      82px;
+  background:  var(--color-transparent);
+  border:      none;
+  color:       var(--color-dark);
+  transition:  all 0.5s ease;
+}
+.menu-btn:focus {
+  outline:  none;
+}
+.menu-btn i {
+  font-size:    2.3rem;
+  font-weight:  bold;
+  color:        var(--color-transparent);
+}
+.logo-color-change {
+  color:      var(--color-dark)!important;
+}
+.fit-header .menu-btn i {
+  color:      var(--color-light)!important;
+}
+.navigation {
+  grid-area:   navigation;
+  z-index:     500;
+  width:       100%;
+  height:      0;
+  opacity:     0;
+  background:  var(--color-dark-grey);
+  transition:  all 0.5s ease;
+  color:       var(--color-light);
+  text-align:  right;
+}
+.navigation-open {
+  z-index:  999;
+  height:   100vh;
+  opacity:  1;
+}
+.navigation-open .menu-btn i {
+  color:  var(--color-light);
+}
+.navigation a {
+  display:          none;
+  position:         relative;
+  z-index:          900;
+  text-decoration:  none;
+  color:            var(--color-dark);
+  font-size:        1.5rem;
+  line-height:      3;
+  vertical-align:   middle;
+  padding-right:    24px;
+  opacity:          0;
+  visibility:       hidden;
+  cursor:           pointer;
+  transition:       all 0.5s ease;
+}
+.navigation a span.material-icons {
+  vertical-align:   middle;
+}
+.navigation-open a {
+  display:     block;
+  opacity:     1;
+  visibility:  visible;
+  color:       var(--color-light);
+}
+
+
+
+
+
+/* SPLASH SCREEN */
+.splash {
+  height:      100vh;
+  width:       100vw;
+  background:  url(../img/splash.webp) 43% 0%/408%;
+  opacity:     0;
+  animation:   splashFadeIn 0.5s linear 0.5s 1 forwards;
+}
+@keyframes splashFadeIn {
+  0%    {opacity: 0;}
+  100%  {opacity: 1;}
+}
+
+
+
+
+
+/* SOCIAL NETWORKS ICONS */
+.icons-box {
+  display: none;
+}
+
+
+
+
+
+/* SECTIONS */
+.section {
+  background:  var(--color-light-grey);
+  font-size:   4rem;
+}
+.section-title {
+  width:             100%;
+  background-color:  var(--color-light-grey);
+  padding:           50px;
+}
+.section-title h1, .section-title h2 {
+  color:        var(--color-dark);
+  font-size:    2rem;
+  font-family:  var(--font-secondary);
+  text-align:   center;
+  padding:      25px 0 50px;
+}
+.section-title p {
+  color:        var(--color-dark);
+  font-size:    0.9rem;
+  font-family:  var(--font-secondary);
+  text-align:   justify;
+  line-height:  2;
+}
+.section-pic {
+  height:            45vh;
+  width:             100%;
+  background-color:  var(--color-dark);
+}
+.carousel-inner {
+  height:            100%;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  background-size: 100%, 100%;
+  background-image: none;
+}
+.carousel-control-prev-icon:after,
+.carousel-control-next-icon:after {
+  font-size:    55px;
+  color:        var(--color-light);
+  text-shadow:  0 0 5px var(--color-dark);
+}
+.carousel-control-prev-icon:after {
+  content:  "<";
+}
+.carousel-control-next-icon:after {
+  content:  ">";
+}
+.section.cnc-cutting > .section-pic {
+  background:  url("../img/cnc-cutting.webp") top/cover;
+}
+.section.cnc-milling > .section-pic {
+  background:  url("../img/cnc-milling.webp") top/cover;
+}
+.section.cnc-engraving > .section-pic {
+  background:  url("../img/cnc-engraving.webp") top/cover;
+}
+.contact input,
+.contact textarea {
+  width:          100%;
+  padding:        5px;
+  font-size:      1rem;
+  margin-bottom:  10px;
+  resize:         none;
+  border:         none;
+  border-radius:  3px;
+  outline:        none;
+  text-align:     left;
+}
+.contact button {
+  width:          100%;
+  height:         2rem;
+  border:         none;
+  border-radius:  3px;
+  font-size:      1rem;
+  color:        white;
+  background:   black;
+}
+.map-responsive {
+  overflow:        hidden;
+  padding-bottom:  56.25%;
+  position:        relative;
+  height:          100vw;
+}
+.map-responsive iframe {
+  left:      0;
+  top:       0;
+  height:    100%;
+  width:     100%;
+  position:  absolute;
+}
+
+
+
+
+
+/* FOOTER */
+.footer {
+  /* height:       45vh; */
+  color:        var(--color-light-grey);
+  background:   var(--color-dark-grey);
+  padding-top:  12vh;
+}
+.footer p {
+  font-size:   1rem;
+  color:       var(--font-grey);
+  text-align:  center;
+}
+.icons-box {
+  margin:                 3rem auto 0;
+  width:                  100px;
+  height:                 100px;
+  z-index:                10;
+  display:                grid;
+  grid-template-areas:    "icon-ins icon-fbk";
+  grid-template-columns:  50% 50%;
+}
+.link-ins, .link-fbk {
+  display:  inline-block;
+  width:    50px;
+  height:   50px;
+}
+.link-ins {
+  grid-area:   icon-ins;
+}
+.icon-ins {
+  width:       50px;
+  height:      50px;
+  background:  url(../img/icon_instagram.png) left/cover no-repeat;
+}
+.icon-ins:hover {
+  background:  url(../img/icon_instagram.png) right/cover no-repeat;
+}
+.link-fbk {
+  grid-area:   icon-fbk;
+}
+.icon-fbk {
+  width:       50px;
+  height:      50px;
+  background:  url(../img/icon_facebook.png) left/cover no-repeat;
+}
+.icon-fbk:hover {
+  background:  url(../img/icon_facebook.png) right/cover no-repeat;
+}
+
+
+
+
+
+/* --- DESKTOP --- */
+@media only screen and (min-width: 1040px) {
+
+  /* HEADER */
+  .header {
+    grid-template-areas:
+      "header-logo   navigation";
+    height:         100px;
+  }
+  .header-logo {
+    top:          42vh;
+    left:         36vw;
+    font-size:    8vw;
+    margin:       0px 34px;
+  }
+  .header-active .header-logo {
+    top:        0;
+    left:       0;
+    font-size:  4rem;
+  }
+  .header-active .header-logo:hover {
+    cursor: pointer;
+  }
+  .menu-btn {
+    display:   none;
+  }
+  .navigation {
+    grid-area:   navigation;
+    z-index:     500;
+    height:      100px;
+    opacity:     1;
+    background:  none;
+  }
+  .navigation a {
+    display:          inline-block;
+    line-height:      3;
+    padding-top:      12px;
+    padding-right:    56px;
+  }
+  .header-active .navigation a {
+    opacity:          1;
+    visibility:       visible;
+  }
+
+
+
+
+
+  /* SPLASH SCREEN */
+  .splash {
+    height:      100vh;
+    width:       100vw;
+    background:  url(../img/splash.webp) center/cover;
+  }
+
+
+
+
+
+  /* SECTIONS */
+  .desktopWH {
+    height:                 calc(100vh - 98px)!important;
+  }
+  .section-title h1, .section-title h2 {
+    font-size:    3rem;
+    padding:      0 0 50px;
+  }
+  .section-title p {
+    font-size:    1.4rem;
+  }
+  .section-pic {
+    height:            45vh;
+    width:             100%;
+    background-color:  var(--color-dark);
+  }
+
+
+
+  
+
+  .cnc-cutting {
+    display:                grid;
+    grid-template-areas:    "cnc-cutting-pic cnc-cutting";
+    grid-template-columns:  50% 50%;
+  }
+  .cnc-cutting .section-title {
+    grid-area:    cnc-cutting;
+    padding:      130px;
+  }
+  .cnc-cutting .section-pic {
+    grid-area:    cnc-cutting-pic;
+  }
+
+
+
+  .cnc-milling {
+    display:                grid;
+    grid-template-areas:    "cnc-milling cnc-milling-pic";
+    grid-template-columns:  50% 50%;
+  }
+  .cnc-milling .section-title {
+    grid-area:    cnc-milling;
+    padding:      130px;
+  }
+  .cnc-milling .section-pic {
+    grid-area:    cnc-milling-pic;
+  }
+
+
+
+  .cnc-engraving {
+    display:                grid;
+    grid-template-areas:    "cnc-engraving-pic cnc-engraving";
+    grid-template-columns:  50% 50%;
+  }
+  .cnc-engraving .section-title {
+    grid-area:    cnc-engraving;
+    padding:      130px;
+  }
+  .cnc-engraving .section-pic {
+    grid-area:    cnc-engraving-pic;
+  }
+
+
+
+
+
+  .about {
+    display:                grid;
+    grid-template-areas:    "about carousel";
+    grid-template-columns:  50% 50%;
+  }
+  .about .section-title {
+    grid-area:    about;
+    padding:      130px;
+  }
+  .carousel {
+    grid-area:    carousel;
+  }
+
+
+
+
+
+  .contact {
+    display:                grid;
+    grid-template-areas:    "gmap contact";
+    grid-template-columns:  50% 50%;
+  }
+  .contact .section-title {
+    grid-area:    contact;
+    padding:      130px;
+  }
+  .contact .section-pic {
+    grid-area:    gmap;
+    padding:      10vh;
+  }
+  .map-responsive iframe {
+    height:    100%;
+    width:     100%;
+  }
+}
