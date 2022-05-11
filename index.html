@@ -39,6 +39,9 @@
     
     <!-- main JS -->
     <script src="js/main.js"></script>
+
+    <!-- validation JS -->
+    <script src="js/validation.js"></script>
 </head>
 
 <body>
@@ -151,25 +154,35 @@
   <div class="contact">
     <div class="section-title desktopWH">
       <h1>Kontakt</h1>
-      <form method="post" action="php/mail.php" accept-charset="UTF-8">
+
+      <form
+        method="post"
+        action="php/mail.php"
+        enctype="multipart/form-data"
+        accept-charset="UTF-8">
+
         <label for="name">Vaše ime</label>
-        <br/>
-        <input type="text" name="name" required/>
-        <br/>
+        <input type="text" name="name" id="nameInput" required/>
 
         <label for="email">Vaša e-mail adresa</label>
-        <br/>
-        <input type="email" name="email" required/>
-        <br/>
+        <input type="email" name="email" id="emailInput"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required/>
 
         <label for="message">Vaša poruka</label>
-        <br/>
-        <textarea name="message" rows="8" required></textarea>
-        <br/>
+        <textarea name="message" id="messageInput" rows="6" required></textarea>
 
-        <button type="submit">Pošaljite</button>
+        <input type="hidden" name="MAX_FILE_SIZE" value="10485760">
+        <label for="attachment">Datoteke koje želite poslati</label>
+        <input type="file" name="file[]" id="fileInput"
+          accept=".txt, .pdf, .jpg, .jpeg, .png, .dxf" multiple="multiple"/>
+
+        <p class="attachments">Dopušteno je poslati najviše 10 MB, u sljedećim formatima: PDF, JPG, JPEG, PNG i DXF.</p>
+
+        <button type="submit" disabled="disabled" id="submitBtn">Pošaljite</button>
+
       </form>
     </div>
+    
     <div class="section-pic desktopWH map-responsive">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.214738119445!2d16.083193215778753!3d45.80695761852734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47667976b434f14d%3A0x2f8a34f215a1a286!2sTOOLD%20ND%20d.o.o.!5e0!3m2!1shr!2shr!4v1631113776055!5m2!1shr!2shr" width="800" height="800" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
@@ -188,6 +201,18 @@
       <a class="link-fbk" href="https://www.facebook.com/toold.hr" target="_blank">
         <div class="icon-fbk"></div>
       </a>
+    </div>
+  </div>
+
+
+
+  <!-- Modal file upload warning -->
+  <div id="modal">
+    <div id="modal-content">
+      <p>Dopušteni formati su PDF, JPG, JPEG, PNG i DXF.</p>
+      <p>Dopušteno je poslati najviše 10 MB.</p>
+      <br/>
+      <button type="button" id="modalBtn">Zatvori</button>
     </div>
   </div>
 

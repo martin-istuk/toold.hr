@@ -254,13 +254,23 @@ html, body {
   text-align:     left;
 }
 .contact button {
-  width:          100%;
-  height:         2rem;
-  border:         none;
-  border-radius:  3px;
-  font-size:      1rem;
-  color:        white;
-  background:   black;
+  width:           100%;
+  height:          2rem;
+  border:          none;
+  border-radius:   3px;
+  font-size:       1rem;
+  margin-bottom:   1rem;
+  color:           var(--color-light);
+  background:      var(--color-grey);
+  transition:      all 0.5s ease;
+}
+.submit-enabled {
+  background:      var(--color-dark) !important;
+}
+.attachments {
+  font-size:    0.9rem !important;
+  line-height:  1rem !important;
+  font-style:   italic;
 }
 .map-responsive {
   overflow:        hidden;
@@ -327,6 +337,39 @@ html, body {
 }
 .icon-fbk:hover {
   background:  url(../img/icon_facebook.png) right/cover no-repeat;
+}
+
+
+
+
+
+/* MODAL */
+#modal {
+  display:            none;
+  position:           fixed;
+  z-index:            1000;
+  left:               0;
+  top:                0;
+  height:             100vh;
+  width:              100vw;
+  overflow:           hidden;
+  background-color: hsla(0,0%,0%,0.4);
+}
+#modal-content {
+  background-color: #fff;
+  position:           relative;
+  width:              80vw;
+  margin:             10vw auto;
+  padding:            10vw;
+  border:             none;
+}
+#modal button {
+  color:       var(--color-light);
+  background:  var(--color-dark);
+  border:      none;
+  margin:      auto;
+  padding:     0.5rem 1rem;
+  font-size:   1rem;
 }
 
 
@@ -493,5 +536,15 @@ html, body {
   .map-responsive iframe {
     height:    100%;
     width:     100%;
+  }
+
+
+
+
+
+  /* MODAL */
+  #modal-content {
+    width: 600px;
+    padding: 50px;
   }
 }
