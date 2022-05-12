@@ -8,6 +8,8 @@ require '../../vendor/phpmailer/phpmailer/src/Exception.php';
 require '../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require '../../vendor/phpmailer/phpmailer/src/SMTP.php';
 
+$config = parse_ini_file('/var/app/config.ini', true);	// na serveru
+
 $mail = new PHPMailer(true);
 
 try {
@@ -21,8 +23,8 @@ try {
 		$mail->isSMTP();	//Send using SMTP
 		$mail->Host       = 'mail.toold.hr';	//Set the SMTP server to send through
 		$mail->SMTPAuth   = true;	//Enable SMTP authentication
-		$mail->Username   = 'toold@toold.hr';	//SMTP username
-		$mail->Password   = 'MAIL@toold1';	//SMTP password
+		$mail->Username   = $config['username'];	//SMTP username
+		$mail->Password   = $config['password'];	//SMTP password
 		$mail->SMTPSecure = 'ssl';	//Enable implicit TLS encryption
 		$mail->Port       = 465;	//TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
