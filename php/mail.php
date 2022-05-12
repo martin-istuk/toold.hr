@@ -8,7 +8,10 @@ require '../../vendor/phpmailer/phpmailer/src/Exception.php';
 require '../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require '../../vendor/phpmailer/phpmailer/src/SMTP.php';
 
-$config = parse_ini_file('/var/app/config.ini', true);	// na serveru
+$config = parse_ini_file(
+	'../../mail_auth_phpmailer/mail_auth.php',
+	true
+);	// na serveru
 
 $mail = new PHPMailer(true);
 
