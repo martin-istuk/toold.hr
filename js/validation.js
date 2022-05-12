@@ -3,6 +3,7 @@
 $(document).ready(function() {
   // DOCUMENT READY -->
 
+  var form = $("#form");
   var nameInput = $("#nameInput");
   var emailInput = $("#emailInput");
   var messageInput = $("#messageInput");
@@ -64,7 +65,17 @@ $(document).ready(function() {
 
   // Track changes on file input and check file types
   fileInput.change(function() {
-    typeErrors = this.files.length;
+    // Check if there are any attachments
+    var fileQuantity = this.files.length;
+
+    if ( fileQuantity == 0 ) {
+      form.prop( "action", "php/mail.php" );
+    } else {
+      form.prop( "action", "php/mail_attach.php" );
+    }
+
+    // Set number of needed type checks
+    typeErrors = fileQuantity;
     
     uploadSize = 0;
     for (let i = 0; i < typeErrors; i++) {

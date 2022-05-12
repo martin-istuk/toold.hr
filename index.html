@@ -156,6 +156,7 @@
       <h1>Kontakt</h1>
 
       <form
+        id="form"
         method="post"
         action="php/mail.php"
         enctype="multipart/form-data"
@@ -173,7 +174,7 @@
 
         <input type="hidden" name="MAX_FILE_SIZE" value="10485760">
         <label for="attachment">Datoteke koje želite poslati</label>
-        <input type="file" name="file[]" id="fileInput"
+        <input type="file" name="upload[]" id="fileInput"
           accept=".txt, .pdf, .jpg, .jpeg, .png, .dxf" multiple="multiple"/>
 
         <p class="attachments">Dopušteno je poslati najviše 10 MB, u sljedećim formatima: PDF, JPG, JPEG, PNG i DXF.</p>

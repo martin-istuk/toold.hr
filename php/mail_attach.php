@@ -31,6 +31,33 @@ try {
 		$mail->addAddress('toold@toold.hr', 'toold');	//Add a recipient, name is optional
 		$mail->addReplyTo($_POST['email'], $_POST['name']);
 
+	//Attachments
+		for( $ct=0 ; $ct<count($_FILES['upload']['tmp_name']) ; $ct++) {
+			$ext = PHPMailer::mb_pathinfo(
+				$_FILES['upload']['name'][$ct],
+				PATHINFO_EXTENSION
+			);
+
+			$uploadfile = tempnam(
+				sys_get_temp_dir(),
+				hash(
+					'sha256',
+					$_FILES['upload']['name'][$ct]
+				)
+			) . '.' . $ext;
+
+			$filename = $_FILES['upload']['name'][$ct];
+
+			move_uploaded_file(
+				$_FILES['upload']['tmp_name'][$ct],
+				$uploadfile
+			);
+
+			$mail->addAttachment($uploadfile, $filename);
+
+			// unlink($uploadfile);  // delete the file after sending? ¯\_(ツ)_/¯
+		}
+
 	//Content
 		$mail->isHTML(true);	//Set email format to HTML
 		$mail->Subject = 'toold - nova poruka - ' . $_POST['name'];
