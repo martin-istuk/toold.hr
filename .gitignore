@@ -1,2 +1,2 @@
-php/mail.php,
-php/mail_attach.php
+# ignore php mail folder
+php/
